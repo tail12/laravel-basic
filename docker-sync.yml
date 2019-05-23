@@ -1,0 +1,6 @@
+version: '2'
+
+syncs:
+  basic_syncs:
+    src: './project-basic/'
+    sync_strategy: 'unison'

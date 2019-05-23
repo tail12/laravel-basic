@@ -1,0 +1,54 @@
+version: '3.7'
+services:
+  composer:
+    image: composer:latest
+    container_name: composer
+    working_dir: /www/project-basic
+    restart: 'no'
+    volumes:
+      - type: bind
+        source: ./project-basic
+        target: /www/project-basic
+      - "~/.ssh:/root/.ssh"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - type: bind
+        source: ./nginx/certs
+        target: /etc/nginx/certs
+      - type: bind
+        source: ./nginx/sites-enabled
+        target: /etc/nginx/sites-enabled
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+      - type: bind
+        source: ./project-basic
+        target: /www
+      - phpsocket:/var/run
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  basic:
+    build: ./php
+    container_name: basic
+    working_dir: /www/project-basic
+    volumes:
+      - type: bind
+        source: ./php/php.ini
+        target: /usr/local/etc/php.ini
+      - type: bind
+        source: ./php/zz-docker.conf
+        target: /usr/local/etc/php-fpm.d/zz-docker.conf
+      - type: bind
+        source: ./php/www.conf
+        target: /usr/local/etc/php-fpm.d/www.conf
+      - ./project-basic:/www/project-basic:cached
+      - phpsocket:/var/run
+
+volumes:
+  phpsocket:

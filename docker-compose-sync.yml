@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  basic:
+    volumes:
+      - basic_syncs:/www/project-basic
+
+volumes:
+  basic_syncs:
+    external: true
