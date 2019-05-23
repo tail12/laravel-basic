@@ -3,4 +3,4 @@ version: '2'
 syncs:
   basic_syncs:
     src: './project-basic/'
-    sync_strategy: 'unison'
+    sync_strategy: 'native_osx'
