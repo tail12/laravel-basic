@@ -1,3 +1,3 @@
 nginx/certs/*
 .docker-sync
-project-basic/*
+project-data/*
