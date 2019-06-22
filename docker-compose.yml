@@ -29,7 +29,7 @@ services:
         target: /etc/nginx/nginx.conf
       - type: bind
         source: ./project-basic
-        target: /www
+        target: /www/project-basic
       - phpsocket:/var/run
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
