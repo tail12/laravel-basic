@@ -2,5 +2,5 @@ version: '2'
 
 syncs:
   basic_syncs:
-    src: './project-basic/'
+    src: './project-data/project-basic'
     sync_strategy: 'native_osx'

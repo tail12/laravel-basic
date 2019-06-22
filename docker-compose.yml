@@ -7,8 +7,8 @@ services:
     restart: 'no'
     volumes:
       - type: bind
-        source: ./project-basic
-        target: /www/project-basic
+        source: ./project-data/
+        target: /www
       - "~/.ssh:/root/.ssh"
 
   nginx:
@@ -28,8 +28,8 @@ services:
         source: ./nginx/nginx.conf
         target: /etc/nginx/nginx.conf
       - type: bind
-        source: ./project-basic
-        target: /www/project-basic
+        source: ./project-data
+        target: /www/project-data
       - phpsocket:/var/run
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
@@ -47,7 +47,7 @@ services:
       - type: bind
         source: ./php/www.conf
         target: /usr/local/etc/php-fpm.d/www.conf
-      - ./project-basic:/www/project-basic:cached
+      - ./project-data/project-basic:/www/project-basic:cached
       - phpsocket:/var/run
 
 volumes:

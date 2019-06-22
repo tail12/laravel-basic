@@ -18,7 +18,7 @@ server {
   ssl_ciphers  HIGH:!aNULL:!MD5;
   ssl_prefer_server_ciphers   on;
 
-  root /www/project-basic/public;
+  root /www/project-data/project-basic/public;
   index index.php;
 
   location / {
